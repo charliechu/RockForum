@@ -1,0 +1,64 @@
+## Mac OS
+.DS_Store
+._*
+Icon?
+
+## Textmate
+*.tmproj
+tmtags
+
+## EMACS
+*~\#*
+.\#*
+
+## VIM
+*.swp
+.redcar/
+
+## RAILS::GENERAL
+.bundle
+config/database.yml
+coverage
+db/*.sql
+db/*.sqlite3
+db/schema.rb
+log/*.log
+pkg
+public/javascripts/all.js
+public/stylesheets/all.css
+publis/system/*
+rdoc
+rerun.txt
+tmp/**/*
+tmp/*
+
+## RAILS::SPECIFIC
+.livereload
+.rvmrc
+config/api.yml
+config/aws.yml
+config/backup.yml
+config/new_relic.yml
+config/recaptcha.yml
+config/*.sphink.conf
+config/sphink.yml
+config/yahoo.yml
+converage/
+converage.data
+db/sphinx/*
+public/sitemap*
+public/pages/ad_*
+rcov/
+sphinx_*.*
+test/*
+vendor/plugins/query_reviewer/
+
+
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.sass-cache/
+
+
+
