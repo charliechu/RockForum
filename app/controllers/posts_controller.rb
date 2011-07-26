@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   def index
     @board = Board.find(params[:board_id])
     @posts = @board.posts.all
