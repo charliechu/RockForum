@@ -1,11 +1,15 @@
-<%= form_for @post, :url => post_path(@post), :method => :put do |f| %>
-    <p>
-        <%= f.label :subject, "Subject:" %>
-        <%= f.text_field :subject %>
-    </p>
-        <%= f.label :content, "Content:" %>
-    <p>
-        <%= f.text_area :content %>
-    </p>
-    <%= f.submit "Update" %>
+<%= render :partial => "common/user_nav" %>
+
+<% if user_signed_in? %>
+    <%= form_for @post, :url => board_post_path(@board, @post), :method => :put do |f| %>
+        <p>
+            <%= f.label :subject, "Subject:" %>
+            <%= f.text_field :subject %>
+        </p>
+            <%= f.label :content, "Content:" %>
+        <p>
+            <%= f.text_area :content %>
+        </p>
+        <%= f.submit "Update" %>
+    <% end %>
 <% end %>

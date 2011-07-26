@@ -15,6 +15,10 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 
+
+# Use other plugin
+gem 'devise'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

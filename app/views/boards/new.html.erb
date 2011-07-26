@@ -1,0 +1,9 @@
+<%= render :partial => "common/user_nav" %>
+
+<% if user_signed_in? %>
+    <%= form_for @board, :url => boards_path(@board) do |f| %>
+        <%= f.label :name, "Board Name:" %>
+        <%= f.text_field :name %>
+        <%= f.submit "Create" %>
+    <% end %>
+<% end %>

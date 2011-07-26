@@ -1,11 +1,15 @@
+<%= render :partial => "common/user_nav" %>
+
 <ul>
 <% @posts.each do |post| %>
     <li>
-        <%= link_to(post.subject, post_path(post)) %>
-        <%= link_to("Edit", edit_post_path(post)) %>
-        <%= link_to("Destroy", post_path(post), :method => :delete )%>
+        <%= link_to(post.subject, board_post_path(@board, post)) %>
+        <% if user_signed_in? %>
+            <%= link_to("Edit", edit_board_post_path(@board, post)) %>
+            <%= link_to("Destroy", board_post_path(@board, post), :method => :delete )%>
+        <% end %>
     </li>
 <% end %>
 </ul>
 
-<%= link_to("New Post", new_post_path) %>
+<%= link_to("New Post", new_board_post_path(@board)) if user_signed_in? %>
