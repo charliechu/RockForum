@@ -36,6 +36,7 @@ class BoardsController < ApplicationController
   
   def destroy
     @board = Board.find(params[:id])
+    @board.posts.destroy_all
     @board.destroy
     redirect_to boards_path
   end
