@@ -2,6 +2,11 @@
     <% if user_signed_in? %>
         Signed in as <%= current_user.email %>.Not you?
         <%= link_to("Sign out", destroy_user_session_path) %>
+        
+        <% if current_user.is_admin? %>
+            <%= link_to("Admin Panel", admin_boards_path ) %>
+        <% end %>
+        
     <% else %>
         <%= link_to("Sing up", new_user_registration_path) %> or <%= link_to("Sign in", new_user_session_path) %>
     <% end %>
