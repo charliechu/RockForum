@@ -1,17 +1,15 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :find_board, :only => [:index, :new, :create, :show, :edit, :update, :destroy]
   def index
-    @board = Board.find(params[:board_id])
     @posts = @board.posts.all
   end
   
   def new
-    @board = Board.find(params[:board_id])
     @post = current_user.posts.new
   end
   
   def create
-    @board = Board.find(params[:board_id])
     @post = @board.posts.build(params[:post])
     @post.user_id = current_user.id
     if @post.save
@@ -22,17 +20,14 @@ class PostsController < ApplicationController
   end
   
   def show
-    @board = Board.find(params[:board_id])
     @post = @board.posts.find(params[:id])
   end
   
   def edit
-    @board = Board.find(params[:board_id])
     @post = current_user.posts.find(params[:id])
   end
   
   def update 
-    @board = Board.find(params[:board_id])
     @post = current_user.posts.find(params[:id])
     if @post.update_attributes(params[:post])
       redirect_to board_post_path(@board, @post)
@@ -42,9 +37,13 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @board = Board.find(params[:board_id])
     @post = current_user.posts.find(params[:id])
     @post.destroy
     redirect_to board_posts_path
+  end
+  
+  protected
+  def find_board
+    @board = Board.find(params[:board_id])
   end
 end

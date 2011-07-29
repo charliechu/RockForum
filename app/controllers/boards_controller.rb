@@ -1,4 +1,5 @@
 class BoardsController < ApplicationController
+  before_filter :find_board, :only => [:show, :edit, :update, :destroy]
   def index
     @boards = Board.all
     @posts = Post.all
@@ -18,15 +19,14 @@ class BoardsController < ApplicationController
   end
   
   def show 
-    @board = Board.find(params[:id])
+
   end 
   
   def edit 
-    @board = Board.find(params[:id])
+
   end
   
   def update
-    @board = Board.find(params[:id])
     if @board.update_attributes(params[:board])
       redirect_to board_path(params[:id])
     else
@@ -35,9 +35,14 @@ class BoardsController < ApplicationController
   end
   
   def destroy
-    @board = Board.find(params[:id])
     @board.posts.destroy_all
     @board.destroy
     redirect_to boards_path
+  end
+  
+  protected
+  
+  def find_board
+    @board = Board.find(params[:id])
   end
 end
