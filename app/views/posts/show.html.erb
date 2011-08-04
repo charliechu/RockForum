@@ -1,8 +1,6 @@
 <%= render :partial => "common/user_nav" %>
 
-<% if user_signed_in? %>
-    <p>Subject: <%= @post.subject %></p>
-    <p>Content: <%= simple_format(@post.content) %></p>
+<p>Subject: <%= @post.subject %></p>
+<p>Content: <%= simple_format(@post.content) %></p>
 
-    <%= link_to("Post Index", board_posts_path(@board) )%>
-<% end %>
+<%= link_to("Post Index", admin_board_posts_path(@board) )%>

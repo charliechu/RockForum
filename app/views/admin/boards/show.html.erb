@@ -1,6 +1,4 @@
 <%= render :partial => "common/user_nav" %>
 
-<% if user_signed_in? %>
-    <p>Board Name: <%= @board.name %></p>
-    <%= link_to("Back Board Index", boards_path) %>
-<% end %>
+<p>Board Name: <%= @board.name %></p>
+<%= link_to("Back Board Index", admin_boards_path) %>

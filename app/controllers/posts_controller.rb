@@ -1,17 +1,20 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
-  before_filter :find_board, :only => [:index, :new, :create, :show, :edit, :update, :destroy]
+  before_filter :find_board
+  before_filter :find_post, :only => [:show, :edit, :update, :destroy]
+  before_filter :auth_article_writor, :only => [:update, :edit, :destroy]
+  
   def index
     @posts = @board.posts.all
   end
   
   def new
-    @post = current_user.posts.new
+    @post = Post.new
   end
   
   def create
     @post = @board.posts.build(params[:post])
-    @post.user_id = current_user.id
+    @post.user = current_user
     if @post.save
       redirect_to board_posts_path
     else
@@ -20,15 +23,12 @@ class PostsController < ApplicationController
   end
   
   def show
-    @post = @board.posts.find(params[:id])
   end
   
   def edit
-    @post = current_user.posts.find(params[:id])
   end
   
   def update 
-    @post = current_user.posts.find(params[:id])
     if @post.update_attributes(params[:post])
       redirect_to board_post_path(@board, @post)
     else
@@ -37,13 +37,23 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @post = current_user.posts.find(params[:id])
     @post.destroy
     redirect_to board_posts_path
   end
   
   protected
+  
   def find_board
     @board = Board.find(params[:board_id])
+  end
+  
+  def find_post
+    @post = @board.posts.find(params[:id])
+  end
+  
+  def auth_article_writor
+    unless (user_signed_in? && (@post.user == current_user))
+      redirect_to board_posts_path
+    end
   end
 end

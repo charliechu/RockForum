@@ -4,7 +4,7 @@
 <% @posts.each do |post| %>
     <li>
         <%= link_to(post.subject, board_post_path(@board, post)) %>
-        <% if user_signed_in? %>
+        <% if current_user && post.user == current_user %>
             <%= link_to("Edit", edit_board_post_path(@board, post)) %>
             <%= link_to("Destroy", board_post_path(@board, post), :method => :delete )%>
         <% end %>

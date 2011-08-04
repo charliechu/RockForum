@@ -3,13 +3,11 @@
 <ul>
 <% @posts.each do |post| %>
     <li>
-        <%= link_to(post.subject, board_post_path(@board, post)) %>
-        <% if user_signed_in? %>
-            <%= link_to("Edit", edit_board_post_path(@board, post)) %>
-            <%= link_to("Destroy", board_post_path(@board, post), :method => :delete )%>
-        <% end %>
+        <%= link_to(post.subject, admin_board_post_path(@board, post)) %>
+            <%= link_to("Edit", edit_admin_board_post_path(@board, post)) %>
+            <%= link_to("Destroy", admin_board_post_path(@board, post), :method => :delete )%>
     </li>
 <% end %>
 </ul>
 
-<%= link_to("New Post", new_board_post_path(@board)) if user_signed_in? %>
+<%= link_to("New Post", new_admin_board_post_path(@board)) %>

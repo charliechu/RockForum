@@ -1,15 +1,13 @@
 <%= render :partial => "common/user_nav" %>
 
-<% if user_signed_in? %>
-    <%= form_for @post, :url => board_posts_path(@board, @post) do |f| %>
-        <p>
-            <%= f.label :subject, "Subject:" %>
-            <%= f.text_field :subject %>
-        </p>
-        <%= f.label :content, "Content:" %>
-        <p>
-            <%= f.text_area :content %>
-        </p>
-        <%= f.submit "Create" %>
-    <% end %>
+<%= form_for @post, :url => admin_board_posts_path(@board, @post) do |f| %>
+    <p>
+        <%= f.label :subject, "Subject:" %>
+        <%= f.text_field :subject %>
+    </p>
+    <%= f.label :content, "Content:" %>
+    <p>
+        <%= f.text_area :content %>
+    </p>
+    <%= f.submit "Create" %>
 <% end %>

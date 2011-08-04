@@ -2,9 +2,9 @@ class Admin::PostsController < ApplicationController
   layout "admin"
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :find_board, :only => [:index, :new, :create, :show, :edit, :update, :destroy]
+  before_filter :find_post, :only => [:show, :edit, :update, :destroy]
   before_filter :require_is_admin
 
-  
   def index
     @posts = @board.posts.all
   end
@@ -15,7 +15,7 @@ class Admin::PostsController < ApplicationController
   
   def create
     @post = @board.posts.build(params[:post])
-    @post.user_id = current_user.id
+    @post.user = current_user
     if @post.save
       redirect_to board_posts_path
     else
@@ -24,24 +24,20 @@ class Admin::PostsController < ApplicationController
   end
   
   def show
-    @post = @board.posts.find(params[:id])
   end
   
   def edit
-    @post = current_user.posts.find(params[:id])
   end
   
   def update 
-    @post = current_user.posts.find(params[:id])
     if @post.update_attributes(params[:post])
-      redirect_to board_post_path(@board, @post)
+      redirect_to admin_board_post_path(@board, @post)
     else
       render :action => "edit"
     end
   end
   
   def destroy
-    @post = current_user.posts.find(params[:id])
     @post.destroy
     redirect_to board_posts_path
   end
@@ -49,5 +45,9 @@ class Admin::PostsController < ApplicationController
   protected
   def find_board
     @board = Board.find(params[:board_id])
+  end
+  
+  def find_post
+    @post = @board.posts.find(params[:id])
   end
 end

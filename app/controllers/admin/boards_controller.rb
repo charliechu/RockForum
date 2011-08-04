@@ -1,10 +1,10 @@
 class Admin::BoardsController < ApplicationController
   layout "admin"
   before_filter :find_board, :only => [:show, :edit, :update, :destroy]
+  before_filter :require_is_admin
 
   def index
     @boards = Board.all
-    @posts = Post.all
   end
   
   def new
@@ -14,7 +14,7 @@ class Admin::BoardsController < ApplicationController
   def create
     @board = Board.new(params[:board])
     if @board.save
-      redirect_to boards_path
+      redirect_to admin_boards_path
     else
       render :action => "new"
     end
@@ -30,7 +30,7 @@ class Admin::BoardsController < ApplicationController
   
   def update
     if @board.update_attributes(params[:board])
-      redirect_to board_path(params[:id])
+      redirect_to admin_board_path(params[:id])
     else
       render :action => "edit"
     end
@@ -39,7 +39,7 @@ class Admin::BoardsController < ApplicationController
   def destroy
     @board.posts.destroy_all
     @board.destroy
-    redirect_to boards_path
+    redirect_to admin_boards_path
   end
   
   protected
