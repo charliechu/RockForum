@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/p7r/will_paginate.git
+  revision: 53d1da6da003dc172ee054e4cc416d0723f00b88
+  branch: rails3
+  specs:
+    will_paginate (3.0.pre3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -99,7 +106,6 @@ GEM
       multi_json (>= 1.0.2)
     warden (1.0.4)
       rack (>= 1.0)
-    will_paginate (2.3.15)
 
 PLATFORMS
   ruby
@@ -113,4 +119,4 @@ DEPENDENCIES
   sass
   sqlite3
   uglifier
-  will_paginate
+  will_paginate!

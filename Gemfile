@@ -18,7 +18,7 @@ gem 'jquery-rails'
 
 # Use other plugin
 gem "devise"
-gem "will_paginate"
+gem "will_paginate", :git => "https://github.com/p7r/will_paginate.git", :branch => "rails3"
 
 # Use unicorn as the web server
 # gem 'unicorn'

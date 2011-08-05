@@ -8,9 +8,13 @@
             <%= link_to("Edit", edit_board_post_path(@board, post)) %>
             <%= link_to("Destroy", board_post_path(@board, post), :method => :delete )%>
         <% end %>
-        <em><%= "By #{post.user.email}"%></em>
+        <%= l(post.created_at, :format => :short) %>
+        <%= l(post.updated_at, :format => :short) %>
+        <%= "By #{post.user.email}"%>
     </li>
 <% end %>
 </ul>
 
 <%= link_to("New Post", new_board_post_path(@board)) if user_signed_in? %>
+
+<%= will_paginate @posts %>
