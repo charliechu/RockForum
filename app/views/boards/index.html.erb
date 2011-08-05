@@ -1,5 +1,13 @@
 <%= render :partial => "common/user_nav" %>
 
+<%= link_to "中文版", :controller => controller.controller_name, 
+   	         :action => controller.action_name, :locale => "tw"	%>
+<%= link_to "English", :controller => controller.controller_name, 
+   	         :action => controller.action_name, :locale => "en" %>
+
+<h2><%= t "welcome.title" %></h2>
+<p><%= t "welcome.paragraph" %></p>
+
 <ul>
 <% @boards.each do |board| %>
     <li>
