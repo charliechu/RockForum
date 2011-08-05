@@ -4,6 +4,7 @@
 <% @boards.each do |board| %>
     <li>
         <%= link_to(board.name, board_posts_path(board)) %>
+        <%= board.posts.size %>
     </li>
 <% end %>
 </ul>

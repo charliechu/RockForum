@@ -8,6 +8,7 @@
             <%= link_to("Edit", edit_board_post_path(@board, post)) %>
             <%= link_to("Destroy", board_post_path(@board, post), :method => :delete )%>
         <% end %>
+        <em><%= "By #{post.user.email}"%></em>
     </li>
 <% end %>
 </ul>
