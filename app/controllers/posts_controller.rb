@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_filter :auth_article_writor, :only => [:update, :edit, :destroy]
   
   def index
-    @posts = @board.posts.paginate(:page => params[:page], :per_page => 4)
+    @posts = @board.posts.recent.paginate(:page => params[:page], :per_page => 4)
   end
   
   def new
