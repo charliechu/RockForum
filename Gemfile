@@ -20,6 +20,8 @@ gem 'jquery-rails'
 gem "devise"
 gem "will_paginate", :git => "https://github.com/p7r/will_paginate.git", :branch => "rails3"
 gem "paperclip"
+gem "populator"
+gem "faker"
 
 # Use unicorn as the web server
 # gem 'unicorn'
