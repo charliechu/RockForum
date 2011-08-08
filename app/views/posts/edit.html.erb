@@ -1,7 +1,7 @@
 <%= render :partial => "common/user_nav" %>
 
 <% if user_signed_in? %>
-    <%= form_for @post, :url => board_post_path(@board, @post), :method => :put do |f| %>
+    <%= form_for @post, :url => board_post_path(@board, @post), :html => {:method => :put, :multipart => true} do |f| %>
         <p>
             <%= f.label :subject, "Subject:" %>
             <%= f.text_field :subject %>
@@ -9,6 +9,9 @@
             <%= f.label :content, "Content:" %>
         <p>
             <%= f.text_area :content %>
+        </p>
+        <p>
+            <%= f.file_field :photo %>
         </p>
         <%= f.submit "Update" %>
     <% end %>
